@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeaLit: {{ restaurants["name"] }}</title>
+    <link rel="icon" href="/static/images/M.png">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="/static/app.css">
+    <link rel="stylesheet" href="/static/theme.css">
+    <link rel="stylesheet" href="/static/stylex.css">
+    <!-- custom css file link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+    <!-- header section starts  -->
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="#"><img src="/static/images/MeaLit Logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse  justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <!-- <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#aboutus">About</a>
+              </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <div class="container">
+        <div class="card" id="details">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-6">
+                        <div class="white-box text-center"><img src="{{ restaurants['image'] }}" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-6">
+                        <h1 class="box-title mt-5">{{ restaurants["name"] }}</h1>
+                        <h4>Cuisine: {{ restaurants["cuisine"] }}</h4>
+                        <h4>{{ restaurants["type"] }}</h4>
+                        <h4>Days Open: {{ restaurants["days_open"] }}</h4>
+                        <h4>Price for Two: Rs. {{ restaurants["price"] }}</h4>
+                        <br>
+                        <h4>Location: {{ restaurants["region"] }}, {{ restaurants["city"] }}</h4>
+                        <button class="btn btn-primary saveit" id="saveit" data-bs-toggle="modal"
+                            data-bs-target="#myModal" title="Save It!" data-original-title="Save It!">Save It!</button>
+                        <button class="btn btn-primary saveit" id="saveit" title="Zomato" data-original-title="Zomato"
+                            onclick="window.open('{{ restaurants.url }}', '_blank')">Zomato</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="footer">
+
+        <div class="share">
+            <a href="#" class="socialbtn">Facebook</a>
+            <a href="#" class="socialbtn">Twitter</a>
+            <a href="#" class="socialbtn">Instagram</a>
+            <a href="#" class="socialbtn">Pinterest</a>
+            <a href="#" class="socialbtn">Linkedin</a>
+        </div>
+
+        <h1 class="credit"> Semester V <span> Mini Project </span> | All Rights Reserved! </h1>
+
+    </section>
+
+    <!-- scroll top button  -->
+    <!-- <a href="#home" class="fas fa-angle-up" id="scroll-top"></a> -->
+
+    <!-- loader  -->
+    <div class="loader-container">
+        <img src="/static/images/loader.gif" alt="">
+    </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- <form action="/MeaLit/{{ user_id }}/restaurant/{{ restaurants['restaurant_id'] }}" method="POST"></form> -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Save to Board</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <form action="/MeaLit/{{ user_id }}/restaurant/{{ restaurants['restaurant_id'] }}"
+                            method="POST">
+                            <label for="ingredients">Select the board you wish to save your pin to:</label>
+                            <select name="board" id="board" class="form-select form-select-lg mb-3"
+                                aria-label=".form-select-lg example">
+                                <option selected>Choose Board</option>
+                                {% for board in boards %}
+                                <option value="{{ board['board_id'] }}" class="box-drop">{{ board['title'] }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Save It!</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Save It!</button>
+                </div> -->
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- custom js file link  -->
+
+    <script src="/static/scriptx.js"></script>
+
+</body>
+
+</html>

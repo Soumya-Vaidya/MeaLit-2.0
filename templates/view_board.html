@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MeaLit: {{ board['title'] }}</title>
+	<link rel="icon" href="/static/images/M.png">
+	<!-- font awesome cdn link  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+		integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- custom css file link  -->
+	<link rel="stylesheet" href="/static/app.css">
+	<link rel="stylesheet" href="/static/theme.css">
+	<link rel="stylesheet" href="/static/stylex.css">
+	<!-- custom css file link  -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+	<!-- header section starts  -->
+
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand logo" href="#"><img src="/static/images/MeaLit Logo.png" alt=""></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse  justify-content-end" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="/MeaLit/{{ user_id }}/profile">Profile</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/MeaLit/{{ user_id }}">Dashboard</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+	<hr style="background:#ccc; height: 1px;">
+	<div class="dashboard" id="mypage">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm" style="text-transform: capitalize">
+					<h1>{{ board['title'] }}</h1>
+					<h3>{{ board['description'] }}</h3>
+				</div>
+				<div class="col-sm text-end add-del">
+					<a href="/MeaLit/profile/{{ user_id }}/boards/{{ board.board_id }}/update"><i
+							class="fa-regular fa-pen-to-square" title="Edit Board" data-bs-toggle="modal"
+							data-bs-target="#myModal"></i></a>
+					<a href="/MeaLit/profile/{{ user_id }}/boards/{{ board['board_id'] }}/delete"><i
+							class="fa-solid fa-trash" title="Delete Board"></i></a>
+				</div>
+			</div>
+			{% if restaurants|length == 0 and recipes|length == 0 %}
+			<hr>
+			<br>
+			<p>No Pins Added Yet!</p>
+			<h3><a href="/MeaLit/{{ user_id }}" style="color: darkred;
+				text-decoration: none;">Add Now!</a></h3>
+			<section></section>
+			<section></section>
+			<section></section>
+			<section></section>
+			{% else %}
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+					<!-- PINTEREST TILES! -->
+					<section class="mt-4 mb-5">
+						<!-- THISSS -->
+						<!-- <div class="container-fluid"> -->
+						<div class="row">
+							<div class="card-columns">
+								{% for restaurant in restaurants %}
+								<div class="card card-pin">
+									<img class="card-img" src="{{ restaurant['image'] }}"
+										alt="{{ restaurant['name'] }}">
+									<div class="overlay">
+										<h2 class="card-title title">{{ restaurant['name'] }}</h2>
+										<div class="more">
+											<a
+												href="/MeaLit/{{ user_id }}/restaurant/{{ restaurant['restaurant_id'] }}">
+												<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+										</div>
+										<div class="card-title title">
+											<a
+												href="/MeaLit/{{ user_id }}/restaurant/{{ restaurant.restaurant_id }}/delete/{{ pins[loop.index0] }}">
+												<i class="fa fa-trash" aria-hidden="true"
+													style="font-size:25px; color: white"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+								{% for recipe in recipes %}
+								<div class="card card-pin">
+									<img class="card-img" src="{{ recipe['image'] }}" alt="{{ recipe['name'] }}">
+									<div class="overlay">
+										<h2 class="card-title title">{{ recipe['name'] }}</h2>
+										<div class="more">
+											<a href="/MeaLit/{{ user_id }}/recipe/{{ recipe['recipe_id'] }}">
+												<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+										</div>
+										<div class="card-title title">
+											<a
+												href="/MeaLit/{{ user_id }}/recipe/{{ recipe.recipe_id }}/delete/{{ pin_id }}">
+												<i class="fa fa-trash" aria-hidden="true"
+													style="font-size:25px; color: white"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</section>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<!-- footer section  -->
+
+		<section class="footer">
+
+			<div class="share">
+				<a href="#" class="socialbtn">Facebook</a>
+				<a href="#" class="socialbtn">Twitter</a>
+				<a href="#" class="socialbtn">Instagram</a>
+				<a href="#" class="socialbtn">Pinterest</a>
+				<a href="#" class="socialbtn">Linkedin</a>
+			</div>
+
+			<h1 class="credit"> Semester V <span> Mini Project </span> | All Rights Reserved! </h1>
+
+		</section>
+
+		<!-- scroll top button  -->
+		<a href="#home" class="fas fa-angle-up" id="scroll-top"></a>
+
+		<!-- loader  -->
+		<div class="loader-container">
+			<img src="/static/images/loader.gif" alt="">
+		</div>
+		<!-- The Modal -->
+		<!-- <div class="modal  createboard" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content createboardform"> -->
+
+		<!-- Modal Header -->
+		<!-- <div class="modal-header">
+						<h4 class="modal-title">Edit Board</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div> -->
+
+		<!-- Modal body -->
+		<!-- <div class="modal-body">
+						<div class="form-group">
+							<form action="/MeaLit/profile/{{ user_id }}/boards/{{ board_id }}" method="POST">
+							</form>
+							<label for="formGroupExampleInput">Board Name</label>
+							<input type="text" name="title" value="{{ board['title'] }}" class="form-control"
+								id="formGroupExampleInput" placeholder="Enter Board Name">
+							<br>
+							<label for="comment">Board Description</label>
+							<textarea class="form-control" name="description" value="{{ board['description'] }}"
+								rows="3" id="comment" placeholder="Enter Board Description"></textarea>
+							<br>
+							<label for="formGroupExampleInput">Cover Image Link</label>
+							<input type="text" name="cover" value="{{ board['cover'] }}" class="form-control"
+								id="formGroupExampleInput" placeholder="Enter the Image Link for the Board Cover">
+							<br>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" name="is_priv" value="1" class="custom-control-input"
+									id="customCheck1">
+								<label class="custom-control-label" for="customCheck1">Make Board Private</label>
+							</div>
+							<br>
+							<button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Save</button>
+							</form>
+						</div>
+					</div> -->
+
+		<!-- Modal footer -->
+		<!-- <div class="modal-footer">
+						<button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Save</button>
+					</div> -->
+
+		<!-- </div>
+			</div>
+		</div> -->
+
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
+		<!-- custom js file link  -->
+
+		<script src="/static/scriptx.js"></script>
+
+</body>
+
+</html>

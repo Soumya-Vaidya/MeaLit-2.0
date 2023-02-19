@@ -1,0 +1,200 @@
+.edit-profile-input {
+    border: 2px #dddddd solid;
+}
+
+.about-input {
+    border-radius: 20px;
+}
+
+div#masonry {
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    -ms-flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 200vw;
+    width: 290px;
+    margin: 0;
+}
+
+div#masonry img,
+div#masonry video {
+    width: 100%;
+    border-radius: 20px;
+    cursor: zoom-in;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.658);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    width: 40%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+    border-radius: 35px;
+}
+
+@keyframes modalopen {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.img-container {
+    position: relative;
+}
+
+.img-container .edit-btn {
+    position: absolute;
+    top: 72%;
+    left: 98%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 90%;
+    text-align: center;
+}
+
+.edit-btn {
+    display: none;
+    background-color: white;
+    border-radius: 90%;
+}
+
+.img-container img:hover+.edit-btn {
+    display: inline-block;
+}
+
+.description-input {
+    border-radius: 30px;
+}
+
+.board-input {
+    border-radius: 30px 0px 0px 30px;
+}
+
+
+.pin-detail-container {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}
+
+header,
+.first-header {
+    box-shadow: rgba(89, 89, 92, 0.041) 0px 7px 5px 0px;
+}
+
+.btn {
+    border-radius: 50px;
+}
+
+.following-btn {
+    background-color: #0e0e0e;
+}
+
+.main-btn {
+    background-color: #efefef;
+}
+
+.red-btn {
+    background-color: #FF5757;
+}
+
+.modal-red-btn {
+    background-color: #FF5757;
+    float: right;
+    font-weight: bold;
+}
+
+.btn-select-border {
+    border-bottom: 2px black solid;
+}
+
+.save-btn {
+    background-color: #FF5757;
+    border-radius: 0 30px 30px 0;
+    border: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    padding-right: 10px;
+    margin-left: -25px;
+}
+
+.pin-detail-img {
+    height: fit-content;
+    width: 400px;
+    border-radius: 20px;
+    margin-left: -15px;
+}
+
+.edit-pin-modal {
+    background-color: #ffffff;
+    margin: 10% auto;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+    border-radius: 35px;
+    overflow: auto;
+}
+
+.video {
+    object-fit: cover;
+    width: 200px;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.edit-modal-video {
+    object-fit: cover;
+    width: 280px;
+    height: 480px;
+}
+
+.edit-modal-img {
+    border-radius: 20px;
+    width: 280px;
+    height: auto;
+}
+
+.comment-text-border {
+    border-radius: 20px;
+}
+
+.private-checkbox {
+    float: left;
+}
+
+.login-bg {
+    background-image: url('/static/images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.register-bg {
+    background-image: url('/static/images/background1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

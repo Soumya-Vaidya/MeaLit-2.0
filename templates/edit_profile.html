@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeaLit: Edit Profile</title>
+    <link rel="icon" href="/static/images/M.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/app.css">
+    <link rel="stylesheet" href="/static/theme.css">
+    <link rel="stylesheet" href="/static/stylex.css">
+    <script src="/static/scriptx.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="#"><img src="/static/images/MeaLit Logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse  justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container fsize">
+        <div class="row flex-lg-nowrap">
+
+            <div class="col">
+                <div class="row">
+                    <div class="col mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h1>Edit Profile</h1>
+                                <div class="tab-content pt-3">
+                                    <div class="tab-pane active">
+                                        <form class="form" action="/MeaLit/profile/edit/{{ user_id }}" method="POST">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Username</label>
+                                                                <input class="form-control" type="text" name="username"
+                                                                    value="{{ user['username'] }}" readonly="true">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Email</label>
+                                                                <input class="form-control" type="text" name="email"
+                                                                    value="{{ user['email'] }}" readonly="true">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>First Name</label>
+                                                                <input class="form-control" type="text" name="fname"
+                                                                    placeholder="John" value="{{ user['fname'] }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Last Name</label>
+                                                                <input class="form-control" type="text" name="lname"
+                                                                    placeholder="Smith" value="{{ user['lname'] }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Image URL for Profile Picture</label>
+                                                                <input class="form-control" type="text" name="photo"
+                                                                    placeholder="https://" value="{{ user['photo'] }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col mb-3">
+                                                            <div class="form-group">
+                                                                <label>About</label>
+                                                                <input class="form-control" type="text" name="bio"
+                                                                    placeholder="A lil something about you"
+                                                                    value="{{ user['bio'] }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col d-flex justify-content-end">
+                                                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <section class="footer">
+
+        <div class="share">
+            <a href="#" class="socialbtn">Facebook</a>
+            <a href="#" class="socialbtn">Twitter</a>
+            <a href="#" class="socialbtn">Instagram</a>
+            <a href="#" class="socialbtn">Pinterest</a>
+            <a href="#" class="socialbtn">Linkedin</a>
+        </div>
+
+        <h1 class="credit"> Semester V <span> Mini Project </span> | All Rights Reserved! </h1>
+
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeaLit</title>
+    <link rel="icon" href="/static/images/M.png">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="/static/app.css">
+    <link rel="stylesheet" href="/static/theme.css">
+    <link rel="stylesheet" href="/static/stylex.css">
+    <!-- custom css file link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+    <!-- header section starts  -->
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="#"><img src="/static/images/MeaLit Logo.png" alt=""></a>
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button> -->
+                <div class="collapse navbar-collapse  justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <form action="/MeaLit/{{user_id}}" method="POST" class="form-inline my-2 my-lg-0">
+                            <input type="text" class="form-control mr-sm-2" name="name" placeholder="Search" style="vertical-align: middle;
+                            width: 66%;
+                            padding: 6px;
+                            border: 1px solid #ccc;
+                            border-radius: 2px;
+                            box-sizing: border-box;
+                            resize: vertical;">
+                            <button class="btn btn-light" type="submit"> <i class="fas fa-search"></i></button>
+                        </form>
+                        {% if p==0 %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}/popular">Popular</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}">Dashboard</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- header section ends -->
+    <section class="dashboard">
+        {% if p==0 %}
+        <h1>My Dashboard</h1>
+        {% else %}
+        <h1>Popular Picks</h1>
+        {% endif %}
+        <br>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                    role="tab" aria-controls="home" aria-selected="true" style="color: black;">Restaurants</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                    role="tab" aria-controls="profile" aria-selected="false" style="color: black;">Recipes</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <!-- PINTEREST TILES! -->
+                <section class="mt-4 mb-5">
+                    <!-- THISSS -->
+                    <!-- <div class="container-fluid"> -->
+                    <div class="row">
+                        <div class="card-columns">
+                            {% for restaurant in restaurants[:750] %}
+                            <div class="card card-pin">
+                                <img class="card-img" src="{{ restaurant['image'] }}" alt="{{ restaurant['name'] }}">
+                                <div class="overlay">
+                                    <h2 class="card-title title">{{ restaurant['name'] }}</h2>
+                                    <div class="more">
+                                        <a href="/MeaLit/{{ user_id }}/restaurant/{{ restaurant['restaurant_id'] }}">
+                                            <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+                                    </div>
+                                    <!-- <div class="card-title title">
+                                        <a href="">
+                                            <i class="fa fa-map-pin" style="font-size:25px; color: white"
+                                                aria-hidden="true"></i>
+                                        </a>
+                                    </div> -->
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <section class="mt-4 mb-5">
+                    <div class="row">
+                        <a href="javascript:void(0)" class="btn btn-warning msgBtn" data-bs-toggle="modal"
+                            data-bs-target="#myModal">Got some leftovers in the fridge?</a>
+                        <div class="card-columns">
+                            {% for recipe in recipes[150:1761] %}
+                            <div class="card card-pin">
+                                <img class="card-img" src="{{ recipe['image'] }}" alt="{{ recipe['name'] }}">
+                                <div class="overlay">
+                                    <h2 class="card-title title">{{ recipe['name'] }}</h2>
+                                    <div class="more">
+                                        <a href="/MeaLit/{{ user_id }}/recipe/{{ recipe['recipe_id'] }}">
+                                            <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- THISSSS -->
+                </section>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- footer section  -->
+
+    <section class="footer">
+
+        <div class="share">
+            <a href="#" class="socialbtn">Facebook</a>
+            <a href="#" class="socialbtn">Twitter</a>
+            <a href="#" class="socialbtn">Instagram</a>
+            <a href="#" class="socialbtn">Pinterest</a>
+            <a href="#" class="socialbtn">Linkedin</a>
+        </div>
+
+        <h1 class="credit"> Semester V <span> Mini Project </span> | All Rights Reserved! </h1>
+
+    </section>
+
+    <!-- scroll top button  -->
+    <a href="#home" class="fas fa-angle-up" id="scroll-top"></a>
+
+    <!-- loader  -->
+    <div class="loader-container">
+        <img src="/static/images/loader.gif" alt="">
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Let's get cooking!</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="ingredients">Enter the ingredients you would like to cook with<br>(seperate
+                            ingredients with a comma)</label>
+                        <input type="text" class="form-control" id="ingredients" placeholder="bread, milk, butter">
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button
+                        onclick="window.open('https://colab.research.google.com/drive/1FnryOPVehwU9vQzJTHErATt7N5FYK0DC#scrollTo=PB73XUzg9bzl', '_blank')"
+                        type="submit" class="btn btn-danger" data-bs-dismiss="modal">Give Me
+                        Recommendations!</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- custom js file link  -->
+
+    <script src="/static/scriptx.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<head>
+    <title>MeaLit: Quiz</title>
+    <link rel="icon" href="/static/images/M.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/quiz.css">
+    <script src="/static/quiz.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form action="/MeaLit/{{ user_id }}/quiz" method="POST" id="regForm">
+                    <h1 id="register">MeaLit Quiz</h1>
+                    <div class="all-steps" id="all-steps">
+                        <span class="step"><i class="fa fa-user"></i></span>
+                        <span class="step"><i class="fa fa-map-marker"></i></span>
+                        <span class="step"><i class="fa-solid fa-pizza-slice"></i></span>
+                        <span class="step"><i class="fa fa-cutlery"></i></span>
+                        <span class="step"><i class="fa-regular fa-credit-card"></i></span>
+                        <span class="step"><i class="fa-regular fa-clock"></i></span>
+                    </div>
+
+                    <div class="tab">
+                        <h5>Tell us about yourself!</h5>
+                        <p>
+
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationDefault01">First name</label>
+                                <input type="text" class="form-control" id="validationDefault01" name="fname"
+                                    placeholder="First name" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationDefault02">Last name</label>
+                                <input type="text" class="form-control" id="validationDefault02" name="lname"
+                                    placeholder="Last name" required>
+                            </div>
+                        </div>
+                        <label for="comment">About yourself</label>
+                        <input type="text" class="form-control" id="comment" name="bio" placeholder="Bio" required>
+                        <br>
+                        <label for="validationDefault01">Profile Picture</label>
+                        <input type="text" class="form-control" name="photo" placeholder="Image URL" required>
+                        </p>
+                    </div>
+                    <div class="tab">
+                        <h5>Select your preferred locations:</h5>
+                        <p>
+                        <div class="container abc">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        {% for region in regions %}
+                                        <li>
+                                            <label class="container abc">{{ region }}
+                                                <input type="checkbox" value="{{ region }}" name="region">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        </p>
+
+                    </div>
+                    <div class="tab">
+                        <h5>Select your preferred cuisine categories:</h5>
+                        <p>
+                        <div class="container abc">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li>
+                                            <label class="container abc">North Indian
+                                                <input type="checkbox" value="North-Indian" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">South Indian
+                                                <input type="checkbox" value="South-Indian" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Modern Indian
+                                                <input type="checkbox" value="Modern-Indian" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Chinese
+                                                <input type="checkbox" value="Chinese" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Thai
+                                                <input type="checkbox" value="Thai" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Korean
+                                                <input type="checkbox" value="Korean" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Japanese
+                                                <input type="checkbox" value="Japanese" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Malaysian
+                                                <input type="checkbox" value="Malaysian" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Lebanese
+                                                <input type="checkbox" value="Lebanese" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Mexican
+                                                <input type="checkbox" value="Mexican" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Italian
+                                                <input type="checkbox" value="Italian" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">French
+                                                <input type="checkbox" value="French" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Continental
+                                                <input type="checkbox" value="Continental" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">A lil bit of everything!
+                                                <input type="checkbox" value="all" name="cuisine">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        </p>
+
+                    </div>
+                    <div class="tab">
+                        <h5>Select your preferred restaurant categories:</h5>
+                        <p>
+                        <div class="container abc">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li>
+                                            <label class="container abc">Casual Dining
+                                                <input type="checkbox" value="Casual Dining" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Fine Dining
+                                                <input type="checkbox" value="Fine Dining" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Café
+                                                <input type="checkbox" value="Café" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Bar
+                                                <input type="checkbox" value="Bar" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Pub
+                                                <input type="checkbox" value="Pub" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Food Court
+                                                <input type="checkbox" value="Food Court" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Food Truck
+                                                <input type="checkbox" value="Food Truck" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Dhaba
+                                                <input type="checkbox" value="Dhaba" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Irani Cafe
+                                                <input type="checkbox" value="Irani Cafe" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Quick Bites
+                                                <input type="checkbox" value="Quick Bites" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Dessert Parlor
+                                                <input type="checkbox" value="Dessert Parlor" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Bakery
+                                                <input type="checkbox" value="Bakery" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Confectionery
+                                                <input type="checkbox" value="Confectionery" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Anything works!
+                                                <input type="checkbox" value="all" name="type">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        </p>
+                    </div>
+
+                    <div class="tab">
+                        <h5>Select a price range (for a meal):</h5>
+                        <p>
+                        <div class="container abc">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul>
+                                        <li>
+                                            <label class="container abc">Below 500
+                                                <input type="checkbox" value="500" name="price">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">500 - 1000
+                                                <input type="checkbox" value="1000" name="price">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">1000 - 1500
+                                                <input type="checkbox" value="1500" name="price">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">1500 - 2000
+                                                <input type="checkbox" value="2000" name="price">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="container abc">Above 2000
+                                                <input type="checkbox" value="500" name="price">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        </p>
+                    </div>
+
+
+                    <div class="tab">
+                        <h6>How much time do you generally give to preparing meals at home?</h6>
+                        <p>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationDefault01">Time in Minutes:</label>
+                                <input name="time" type="text" class="form-control" id="validationDefault01"
+                                    placeholder="Time" required>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="thanks-message text-center" id="text-message">
+                        <h3>Thank you for your taking the quiz!</h3>
+                        <span>This quiz will help us recommend you better!</span><br><br>
+                        <button class="btn btn-primary" type="submit">Go to Dashboard</button>
+                        <!-- <a class="btn btn-danger" href="/MeaLit/{{ user_id }}" role="button">Go to Dashboard</a> -->
+                    </div>
+                    <div style="overflow:auto;" id="nextprevious">
+                        <div style="float:right;">
+                            <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i
+                                    class="fa fa-angle-double-left"></i></button>
+                            <button type="button" id="nextBtn" onclick="nextPrev(1)"><i
+                                    class="fa fa-angle-double-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

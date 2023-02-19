@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeaLit: Create Board</title>
+    <link rel="icon" href="/static/images/M.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/app.css">
+    <link rel="stylesheet" href="/static/theme.css">
+    <link rel="stylesheet" href="/static/stylex.css">
+    <script src="/static/scriptx.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="#"><img src="/static/images/MeaLit Logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse  justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/MeaLit/{{ user_id }}">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container fsize">
+        <div class="row flex-lg-nowrap">
+
+            <div class="col">
+                <div class="row">
+                    <div class="col mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h1>Add Board Details</h1>
+                                <div class="tab-content pt-3">
+                                    <div class="tab-pane active">
+                                        <form action="/MeaLit/profile/{{ user_id }}/createboard" method="POST"
+                                            id="login-form" class="box">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="formGroupExampleInput">Board Name</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="formGroupExampleInput" name="title"
+                                                                    placeholder="Name of your board" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="comment">Board Description</label>
+                                                                <input type="text" class="form-control" id="comment"
+                                                                    name="description"
+                                                                    placeholder="lil description of this board"
+                                                                    required></input>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label for="formGroupExampleInput">Cover Image
+                                                                    Link</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="formGroupExampleInput" name="cover" required
+                                                                    placeholder="Enter the Image Link for the Board Cover">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <p>Board for?</p>
+                                                                <input type="radio" id="rr" name="rr"
+                                                                    value="restaurant">
+                                                                <label>
+                                                                    Restaurant</label>
+                                                                <input type="radio" id="rr" name="rr" value="recipe">
+                                                                <label>
+                                                                    Recipe</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input name="is_priv" value="1" type="checkbox"
+                                                            class="custom-control-input" id="customCheck1">
+                                                        <label class="custom-control-label" for="customCheck1">Make
+                                                            Board
+                                                            Private</label>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col d-flex justify-content-end">
+                                                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <section class="footer">
+
+        <div class="share">
+            <a href="#" class="socialbtn">Facebook</a>
+            <a href="#" class="socialbtn">Twitter</a>
+            <a href="#" class="socialbtn">Instagram</a>
+            <a href="#" class="socialbtn">Pinterest</a>
+            <a href="#" class="socialbtn">Linkedin</a>
+        </div>
+
+        <h1 class="credit"> Semester V <span> Mini Project </span> | All Rights Reserved! </h1>
+
+    </section>
+</body>
+
+</html>
