@@ -1,3 +1,4 @@
-flask
-Flask-SQLAlchemy
+Flask==2.2.2
+Flask_SQLAlchemy==2.5.1
+SQLAlchemy==1.4.41
 bcrypt
