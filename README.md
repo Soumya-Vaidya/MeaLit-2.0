@@ -23,7 +23,23 @@ pip install -r requirements.txt
 python app.py
 ```
 
-This will start the Flask development server. You can access the application by navigating to http://localhost:5000/ in your web browser.
+This will start the Flask development server. You can access the application by navigating to http://localhost:8000/ in your web browser.
+
+
+### OR Install Using Docker
+
+
+1. 
+```
+docker build -t mealit2.0 https://github.com/Soumya-Vaidya/MeaLit-2.0.git
+```
+
+2.
+```
+docker run -p 8000:8000 mealit2.0
+```
+
+
 
 ## Features
 - User authentication (registration and login)
